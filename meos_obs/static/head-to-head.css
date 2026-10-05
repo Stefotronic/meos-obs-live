@@ -1,0 +1,24 @@
+#content { padding-top: 24px; }
+.comparison { display: flex; flex-direction: column; gap: 10px; }
+.comparison-row { display: grid; grid-template-columns: 230px repeat(var(--columns, 1), minmax(0, 1fr)); gap: 14px; }
+.athlete { min-width: 0; min-height: 142px; padding: 16px 22px; background: var(--panel); border: 1px solid var(--border); border-radius: 15px; box-shadow: 0 3px 12px rgba(32, 67, 28, .08); }
+.athlete.selected { border: 3px solid var(--accent); background: #fff8eb; }
+.corner { display: flex; align-items: flex-end; padding: 0 12px 14px; color: var(--muted); font-size: 17px; font-weight: 900; letter-spacing: .07em; }
+.athlete-top { color: var(--good); font-size: 16px; font-weight: 900; letter-spacing: .08em; }
+.selected .athlete-top { color: var(--accent-dark); }
+.athlete h2 { margin: 4px 0 0; font-size: 30px; line-height: 1.05; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.org, .athlete-status { color: var(--muted); font-size: 18px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.athlete-status { margin-top: 10px; font-weight: 700; }
+.finish { margin-top: 4px; color: var(--good); font-size: 24px; font-weight: 900; font-variant-numeric: tabular-nums; }
+.finish span { margin-left: 8px; color: var(--muted); font-size: 17px; }
+.control, .split { min-height: 68px; padding: 13px 16px; border-radius: 10px; background: var(--panel); border: 1px solid var(--border); font-size: 21px; }
+.control { display: flex; align-items: center; justify-content: space-between; color: var(--muted); font-size: 18px; font-weight: 700; }
+.control b { color: var(--fg); font-size: 23px; }
+.split { display: flex; align-items: baseline; gap: 9px; font-variant-numeric: tabular-nums; }
+.split b { font-size: 27px; }
+.split-column.selected .split { border: 2px solid #efb561; background: #fff8eb; }
+.rank { color: var(--good); font-size: 18px; font-weight: 900; }
+.behind { color: var(--muted); font-size: 18px; font-weight: 700; }
+.best { color: var(--good); font-size: 17px; font-weight: 900; text-transform: uppercase; }
+.empty-split { color: #99a597; justify-content: center; }
+.no-controls { min-height: 250px; display: grid; place-items: center; background: var(--panel); border: 1px solid var(--border); border-radius: 15px; color: var(--muted); font-size: 28px; }

@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <title>MeOS Live</title>
+  <link rel="stylesheet" href="/static/overlay.css?v=20261004-6">
+</head>
+<body>
+<div id="app">
+  <header>
+    <img id="event-logo" src="/logo" alt="Veranstaltungslogo" hidden onload="this.hidden = false">
+    <div class="h-left">
+      <div id="cmp-name"></div>
+      <div id="cls-name"></div>
+    </div>
+    <div class="h-right">
+      <div id="cls-meta"></div>
+      <div id="clock"></div>
+    </div>
+  </header>
+  <main>
+    <section id="results">
+      <table id="res-table"><thead></thead><tbody></tbody></table>
+      <div id="empty" hidden>Noch keine Ergebnisse</div>
+    </section>
+    <aside id="ticker">
+      <h2>Letzte Zieleinläufe</h2>
+      <ol id="ticker-list"></ol>
+    </aside>
+  </main>
+  <footer>
+    <div id="progress"><div id="progress-bar"></div></div>
+    <span id="conn" title="Verbindung zu MeOS"></span>
+  </footer>
+</div>
+<script src="/static/overlay.js?v=20261004-7"></script>
+</body>
+</html>

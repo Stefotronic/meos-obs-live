@@ -1,0 +1,17 @@
+# Copy this file to config.yaml and adjust it for the next event.
+# config.yaml is intentionally ignored by Git, so it can contain local network details.
+
+event:
+  # Overrides the name supplied by MeOS when set.
+  name: "Example Orienteering Event"
+  short_name: "Example OL"
+  date: "2027-05-01"
+  organizer: "Example Orienteering Club"
+  location: "Exampletown"
+
+  # Path relative to this YAML file. Do not commit event-specific logos unless
+  # you have permission to publish them.
+  # logo: assets/event-logo.png
+
+  # Used only if MeOS does not provide radio controls for a class.
+  radio_controls: []

@@ -159,6 +159,13 @@ ENV/
 env.bak/
 venv.bak/
 
+# Local event configuration and media
+config.yaml
+assets/
+
+# Editor settings
+.vscode/
+
 # Spyder project settings
 .spyderproject
 .spyproject

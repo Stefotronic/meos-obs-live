@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>MeOS Live – Regie</title>
+  <style>
+    body { font-family: system-ui, sans-serif; background: #f2f4f6; color: #1b2733; margin: 0; padding: 16px; }
+    h1 { margin: 0 0 12px; font-size: 22px; }
+    .card { background: #fff; border-radius: 10px; padding: 14px 16px; margin-bottom: 14px; box-shadow: 0 1px 3px rgba(0,0,0,.08); }
+    .card h2 { margin: 0 0 10px; font-size: 16px; text-transform: uppercase; color: #5b6b78; letter-spacing: .04em; }
+    .row { display: flex; gap: 12px; flex-wrap: wrap; align-items: center; margin: 6px 0; }
+    .ok { color: #1a8f4c; font-weight: 700; } .bad { color: #c62f2f; font-weight: 700; }
+    button { font-size: 15px; padding: 8px 14px; border-radius: 8px; border: 1px solid #c3ccd4; background: #fff; cursor: pointer; }
+    button.primary { background: #f47c20; border-color: #f47c20; color: #fff; font-weight: 700; }
+    button.active { background: #1b2733; color: #fff; border-color: #1b2733; }
+    table { border-collapse: collapse; width: 100%; }
+    td, th { text-align: left; padding: 6px 8px; border-bottom: 1px solid #e6eaee; font-size: 15px; }
+    th { color: #5b6b78; font-weight: 600; }
+    input[type=number] { width: 70px; font-size: 15px; padding: 4px; }
+    select { max-width: 300px; font-size: 15px; padding: 5px; }
+    #now { font-size: 20px; font-weight: 700; }
+    .muted { color: #5b6b78; font-size: 13px; }
+    code { background: #eef1f4; padding: 1px 5px; border-radius: 4px; }
+  </style>
+</head>
+<body>
+  <h1>MeOS Live – Regie</h1>
+
+  <div class="card">
+    <h2>Status</h2>
+    <div class="row">MeOS: <span id="conn"></span></div>
+    <div class="row muted" id="cmp"></div>
+    <div class="row muted" id="err"></div>
+  </div>
+
+  <div class="card">
+    <h2>Spezialansichten</h2>
+    <div class="row">
+      <label>Klasse <select id="special-class"></select></label>
+      <label>Läufer <select id="special-runner"></select></label>
+    </div>
+    <div class="muted">Läuferprofil für OBS: <code id="runner-url"></code></div>
+    <div class="muted">Head-to-Head (gewählter Läufer gegen Spitzengruppe): <code id="head-to-head-url"></code></div>
+    <div class="row">
+      <label>Sieger-Ansicht <select id="podium-limit"><option value="3">Top 3</option><option value="6" selected>Top 6</option></select></label>
+    </div>
+    <div class="muted">Sieger-Ansicht der gewählten Klasse: <code id="podium-url"></code></div>
+    <div class="row" id="podium-controls">
+      <span class="muted">Siegerehrung (Tasten 6 bis 1 · R = zurücksetzen):</span>
+      <button data-podium-place="6">6. Platz</button>
+      <button data-podium-place="5">5. Platz</button>
+      <button data-podium-place="4">4. Platz</button>
+      <button data-podium-place="3">🥉 Platz 3</button>
+      <button data-podium-place="2">🥈 Platz 2</button>
+      <button data-podium-place="1" class="primary">🥇 Platz 1</button>
+      <button id="podium-reset">Zurücksetzen</button>
+    </div>
+    <div class="row">
+      <label>Funkposten <select id="special-control"></select></label>
+    </div>
+    <div class="muted">Die hinterlegten Funkposten stehen hier auch ohne Klassenauswahl bereit. Für die OBS-URL anschließend eine Klasse wählen.</div>
+    <div class="muted">Funkpostenansicht für OBS: <code id="radio-url"></code></div>
+    <div class="muted">Kamera-Bauchbinde (Staffeln, automatische Einblendung): <code id="camera-lower-third-url"></code></div>
+    <div class="muted">Übersicht der neuesten Meldungen für OBS: <code id="news-url"></code></div>
+  </div>
+
+  <div class="card">
+    <h2>Auf der Leinwand</h2>
+    <div class="row"><span id="now">–</span></div>
+    <div class="row">
+      <button id="btn-auto">Auto-Rotation</button>
+      <button id="btn-skip" class="primary">Nächste Klasse ▶</button>
+    </div>
+    <div class="row">
+      <label>Sekunden pro Seite <input type="number" id="page-seconds" min="3" max="300"></label>
+      <label><input type="checkbox" id="show-ticker"> Zieleinlauf-Ticker</label>
+      <label>Einträge <input type="number" id="ticker-count" min="1" max="30"></label>
+      <label><input type="checkbox" id="hide-empty"> Klassen ohne Läufer im Wald/Ziel überspringen</label>
+    </div>
+    <div class="muted">Overlay-URL für OBS (Browser-Quelle, 1920×1080): <code id="overlay-url"></code></div>
+  </div>
+
+  <div class="card">
+    <h2>Klassen</h2>
+    <div class="muted">„Anzeigen“ fixiert die Klasse. Häkchen = in der Rotation (keine Häkchen = alle).</div>
+    <table>
+      <thead><tr><th>Rot.</th><th>Klasse</th><th>Typ</th><th>Ziel / Wald / Gemeldet</th><th></th></tr></thead>
+      <tbody id="classes"></tbody>
+    </table>
+  </div>
+
+  <script src="/static/control.js?v=2"></script>
+</body>
+</html>
